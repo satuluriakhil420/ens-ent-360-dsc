@@ -1,0 +1,18 @@
+# glue_job_config/tasks/main.yml
+- name: Update Glue job configuration
+  aws_glue_job:
+    name: "{{ inventory_hostname }}"
+    role: "{{ role }}"
+    command_script_location: "{{ command_script_location }}"
+    command_python_version: "{{ command_python_version }}"
+    default_arguments: "{{ default_arguments }}"
+    max_retries: 0
+    timeout: "{{ timeout }}"
+    worker_type: "{{ worker_type }}"
+    number_of_workers: "{{ number_of_workers }}"
+    glue_version: "{{ glue_version }}"
+    description: "{{ description }}"
+    state: present
+    tags:
+      environment: "dev"
+    region: "{{ region }}"
