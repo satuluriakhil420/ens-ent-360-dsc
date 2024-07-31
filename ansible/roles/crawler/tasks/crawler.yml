@@ -1,8 +1,8 @@
 - name: Create Glue crawler
   community.aws.glue_crawler:
-    name: "ens360-dashboard-crawler-dev-01"
-    database_name: "ens360-dashboard-db-dev-01"
-    role: arn:aws:iam::533267236958:role/sentrics
+    name: "{{ project }}-dashboard-crawler-{{ env }}-01"
+    database_name: "{{ project }}-dashboard-db-{{ env }}-01"
+    role: "arn:aws:iam::533267236958:role/sentrics"
     schema_change_policy:
       delete_behavior: DELETE_FROM_DATABASE
       update_behavior: UPDATE_IN_DATABASE
@@ -17,3 +17,8 @@
             - "**.yml"
     state: present
     region: us-east-1
+
+vars_files:
+  - vars/ens.yml
+  - vars/ent.yml
+
