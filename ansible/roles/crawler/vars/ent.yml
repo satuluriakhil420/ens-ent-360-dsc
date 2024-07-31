@@ -1,2 +1,2 @@
-project = ent-360
-env = dev
+project: "ent-360"
+env: "dev"
