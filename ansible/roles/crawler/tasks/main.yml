@@ -1,4 +1,0 @@
----
-# tasks file for crawler
-
-- import_tasks: crawler.yml
