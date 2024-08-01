@@ -2,7 +2,7 @@
   community.aws.glue_crawler:
     name: "{{ project }}-dashboard-crawler-{{ env }}-01"
     database_name: "{{ project }}-dashboard-db-{{ env }}-01"
-    role: "arn:aws:iam::533267236958:role/sentrics"
+    role: "arn:aws:iam::059643481773:role/sentrics"
     schema_change_policy:
       delete_behavior: DELETE_FROM_DATABASE
       update_behavior: UPDATE_IN_DATABASE
