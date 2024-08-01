@@ -1,0 +1,4 @@
+---
+# tasks file for lambda
+
+- import_tasks: lambda.yml

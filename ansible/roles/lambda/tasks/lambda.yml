@@ -1,0 +1,17 @@
+- name: Update Lambda function configurations
+  amazon.aws.lambda:
+    name: "sentrics"
+    state: present
+    role: "arn:aws:iam::533267236958:role/lambda"
+    region: "us-east-2"
+    runtime: "python3.12"
+    description: "This Lambda Function manages various Quicksight actions including creating and updating templates, extracting the latest version number, updating published dashboard versions, creating analyses, managing folders, and more within Quicksight"
+    timeout: 120
+    memory_size: 128
+    handler: "lambda.handler"
+    environment_variables:
+      project: "sentrics"
+      test: "test123"
+    tags:
+      environment: "dev"
+    zip_file: "/root/terraform/modules/lambda_function_payload.zip"
