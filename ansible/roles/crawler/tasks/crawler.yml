@@ -16,7 +16,7 @@
             - "**.json"
             - "**.yml"
     state: present
-    region: us-east-1
+    region: us-east-2
 
 vars_files:
   - vars/ens.yml
