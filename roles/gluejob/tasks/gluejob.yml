@@ -1,4 +1,8 @@
 # glue_job_config/tasks/main.yml
+
+- name: Include vars file for Glue job
+  include_vars: "{{ vars_file }}"
+
 - name: Update Glue job configuration
   aws_glue_job:
     name: "{{ inventory_hostname }}"
