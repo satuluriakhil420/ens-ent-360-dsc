@@ -1,6 +1,6 @@
 - name: Update Lambda function configurations
   amazon.aws.lambda:
-    name: "sentrics"
+    name: "ensure360-dashboard-qs-dev-dev-01"
     state: present
     role: "arn:aws:iam::059643481773:role/lambda"
     region: "us-east-2"
