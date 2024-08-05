@@ -1,18 +1,17 @@
 - name: Create a bucket
   amazon.aws.s3_bucket:
-    name: dashboard-sl-non-prod-345
+    name: "{{ s3_bucket_name }}"
     state: present
-
+ 
 - name: Create Folder in S3 Bucket
   aws_s3:
-    bucket: dashboard-sl-non-prod-345
-    object: logs/
+    bucket: "{{ s3_bucket_name }}"
+    object: "{{ s3_folder_name }}"
     mode: create
-
-
+ 
 - name: Enabling versioning for S3 bucket
-  s3_bucket:
-    name: "dashboard-sl-non-prod-345"
+  amazon.aws.s3_bucket:
+    name: "{{ s3_bucket_name }}"
     state: present
     public_access:
       block_public_acls: true
@@ -20,21 +19,21 @@
       block_public_policy: true
       restrict_public_buckets: true
     versioning: true
-    region: "us-east-2"
-
+    region: "{{ aws_region }}"
+ 
 - name: Enabling logging for S3 bucket
   community.aws.s3_logging:
-    name: "dashboard-sl-non-prod-345"
-    target_bucket: "dashboard-sl-non-prod-345"
-    target_prefix: "logs/"
+    name: "{{ s3_bucket_name }}"
+    target_bucket: "{{ s3_bucket_name }}"
+    target_prefix: "{{ s3_logging_prefix }}"
     state: present
-    region: "us-east-2"
-
+    region: "{{ aws_region }}"
+ 
 - name: Configuring a lifecycle policy rule on bucket to expire (delete) items with a prefix of /logs/ after 30 days
-  s3_lifecycle:
-    name: "dashboard-sl-non-prod-345"
-    expiration_days: 30
-    prefix: "/logs/"
+  amazon.aws.s3_lifecycle:
+    name: "{{ s3_bucket_name }}"
+    expiration_days: "{{ s3_lifecycle_expiration_days }}"
+    prefix: "{{ s3_lifecycle_prefix }}"
     status: enabled
     state: present
-    region: "us-east-2"
+    region: "{{ aws_region }}"
