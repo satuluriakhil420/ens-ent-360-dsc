@@ -14,4 +14,4 @@
       test: "test123"
     tags:
       environment: "dev"
-    zip_file: "/root/terraform/modules/lambda_function_payload.zip"
+    zip_file: "./function.zip"
