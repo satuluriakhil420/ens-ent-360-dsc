@@ -30,7 +30,7 @@
     region: "{{ aws_region }}"
  
 - name: Configuring a lifecycle policy rule on bucket to expire (delete) items with a prefix of /logs/ after 30 days
-  amazon.aws.s3_lifecycle:
+  s3_lifecycle:
     name: "{{ s3_bucket_name }}"
     expiration_days: "{{ s3_lifecycle_expiration_days }}"
     prefix: "{{ s3_lifecycle_prefix }}"
