@@ -1,22 +1,25 @@
+import os
 import boto3
 
-#region = 'us-east-2'
- 
+# Initialize the Glue client
 glue_client = boto3.client('glue')
- 
-crawler_name = 'ens360-dashboard-crawler-dev-01'
-role = 'arn:aws:iam::059643481773:role/sentrics'
-database_name = 'ens360-dashboard-db-dev-01' 
-table_prefix = 'crawler_output'
- 
 
-description = f"description for ens360-dashboard-crawler"
+# Retrieve values from environment variables
+crawler_name = os.getenv('CRAWLER_NAME')
+role = os.getenv('ROLE')
+database_name = os.getenv('DATABASE_NAME')
+table_prefix = os.getenv('TABLE_PREFIX')
+s3_path = os.getenv('S3_PATH')
 
+description = f"description for {crawler_name}"
+
+# Define the S3 target
 s3_target = {
-    'Path': 's3://dashboard-sl-non-prod-345/' ,
+    'Path': s3_path,
     'Exclusions': []
 }
- 
+
+# Update the crawler
 response = glue_client.update_crawler(
     Name=crawler_name,
     Role=role,
@@ -31,5 +34,5 @@ response = glue_client.update_crawler(
     },
     TablePrefix=table_prefix
 )
- 
+
 print("Crawler updated successfully.")
