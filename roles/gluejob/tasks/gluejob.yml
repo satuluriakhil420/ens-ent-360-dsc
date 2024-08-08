@@ -18,5 +18,5 @@
     description: "{{ description }}"
     state: present
     tags:
-      environment: "foo"
+      environment: "dev"
     region: "{{ region }}"
