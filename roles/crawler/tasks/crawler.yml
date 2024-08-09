@@ -9,8 +9,6 @@
     recrawl_policy:
       recrawl_behavior: "{{ glue_recrawl_behavior }}"
     targets:
-      S3Targets: "{{ glue_s3_targets }}"
-            ConnectionName: "{{ glue_connection_name }}"
-            Exclusions: "{{ glue_s3_exclusions }}"
+      S3Targets: "{{ glue_s3_targets | map('combine', {'ConnectionName': glue_connection_name, 'Exclusions': glue_s3_exclusions}) | list }}"
     state: "{{ glue_state }}"
     region: "{{ aws_region }}"
