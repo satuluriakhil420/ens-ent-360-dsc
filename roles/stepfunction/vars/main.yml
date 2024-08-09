@@ -1,0 +1,14 @@
+---
+state_machines:
+  - name: "ens-360-dashboard-wf-dev-02"
+    definition_file: "wf-dev-02.json"
+    tags:
+      Environment: dev
+ 
+  - name: "ens-360-dashboard-wf-dev"
+    definition_file: "wf-dev.json"
+    tags:
+      Environment: dev
+ 
+role_arn: "arn:aws:iam::059643481773:role/step_function_role_sentrics"
+region: "us-east-2"

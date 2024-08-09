@@ -1,0 +1,10 @@
+- name: Update configuration for each state machine
+  community.aws.stepfunctions_state_machine:
+    name: "{{ item.name }}"
+    definition: "{{ lookup('file', item.definition_file) }}"
+    role_arn: "{{ role_arn }}"
+    region: "{{ region }}"
+    tags: "{{ item.tags }}"
+  loop: "{{ state_machines }}"
+  loop_control:
+    label: "{{ item.name }}"
